@@ -1,0 +1,219 @@
+package Interfejsy;
+
+import java.util.Scanner;
+
+public class ReadAndShowData {
+
+    public static final int LIMIT_FIGURE = 3;
+
+
+    private Scanner sc;
+    private Triangle triangle;
+    private Circle circle;
+    private Rectangle rectangle;
+    private Figure[] tableFigures;
+    private int countIndexTable;
+
+
+    public ReadAndShowData() {
+        sc = new Scanner(System.in);
+        triangle = new Triangle();
+        circle = new Circle();
+        rectangle = new Rectangle();
+        tableFigures = new Figure[LIMIT_FIGURE];
+        countIndexTable = 0;
+    }
+
+    public void controlLoop(){
+        printOption();
+
+        int choose;
+        while ((choose = sc.nextInt()) != 0){
+            switch (choose){
+                case 1:
+                    triangle = createObjectTriangle();
+                    addToTable(triangle);
+                    break;
+                case 2:
+                    circle = createObjectCircle();
+                    addToTable(circle);
+                    break;
+                case 3:
+                    rectangle = createObjectRectangle();
+                    addToTable(rectangle);
+                    break;
+                default:
+                    System.out.println("Nie ma takiej opcji");
+            }
+            printOption();
+
+        }
+
+        printInfo();
+    }
+
+    private void printInfo() {
+        for (int i = 0; i < tableFigures.length; i++) {
+            if (tableFigures[i] instanceof Triangle){
+                System.out.println(triangle);
+                triangle.getPerimeter();
+                triangle.getArea();
+            } else if (tableFigures[i] instanceof Circle){
+                System.out.println(circle);
+                circle.getPerimeter();
+                circle.getArea();
+            } else if (tableFigures[i] instanceof Rectangle){
+                System.out.println(rectangle);
+                rectangle.getPerimeter();
+                rectangle.getArea();
+            }
+        }
+    }
+
+    private Rectangle createObjectRectangle() {
+        System.out.println("Podaj długość któtszego boku: ");
+        int aRectangle = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Podaj długość dłuższego boku: ");
+        int bRectangle = sc.nextInt();
+
+        return new Rectangle(aRectangle, bRectangle);
+    }
+
+    private Circle createObjectCircle() {
+        System.out.println("Podaj promień: ");
+        double rCircle = sc.nextDouble();
+
+        return new Circle(rCircle);
+    }
+
+    private Triangle createObjectTriangle() {
+        System.out.println("Podaj długość pierwszej przyprostokątnej: ");
+        double aTriangle = sc.nextDouble();
+        System.out.println("Podaj długość drugiej przyprostokątnej: ");
+        double bTriangle = sc.nextDouble();
+        double cTriangle = Math.sqrt(Math.pow(aTriangle, 2) + Math.pow(bTriangle, 2));
+
+        return new Triangle(aTriangle, bTriangle, cTriangle);
+    }
+
+
+
+    private void addToTable(Figure figure) {
+
+                if (countIndexTable < LIMIT_FIGURE){
+                    tableFigures[countIndexTable] = figure;
+                    countIndexTable++;
+                }
+
+    }
+
+
+
+    private void printOption() {
+        System.out.println("Wybierz figurę geometryczną: ");
+        System.out.println("1 - Trójkąt prostokątny");
+        System.out.println("2 - Koło");
+        System.out.println("3 - Prostokąt");
+        System.out.println("0 - Wyjście z programu");
+    }
+}
+
+package Interfejsy;
+
+public interface Figure {
+    void getPerimeter();
+    void getArea();
+}
+
+package Interfejsy;
+
+public class Circle implements Figure {
+
+    private static final double PI = 3.14;
+    private double r;
+
+    public Circle(double r) {
+        this.r = r;
+    }
+
+    public Circle(){}
+
+    @Override
+    public void getPerimeter() {
+        System.out.println("Obwód koła wynosi: " + (2 * PI * r));
+    }
+
+    @Override
+    public void getArea() {
+        System.out.println("Pole koła wynosi: " + (Math.pow(r,2) * PI));
+    }
+
+    @Override
+    public String toString() {
+        return "Promień wynosi: " + r;
+    }
+}
+package Interfejsy;
+
+import java.util.Scanner;
+
+public class Rectangle implements Figure {
+
+    private int a;
+    private int b;
+
+    public Rectangle() {
+    }
+
+    public Rectangle(int aRectangle, int bRectangle) {
+        a = aRectangle;
+        b = bRectangle;
+    }
+
+    @Override
+    public void getPerimeter() {
+        System.out.println("Obwód prostokąta wynosi: " + (2 * a + 2 * b));
+    }
+
+    @Override
+    public void getArea() {
+        System.out.println("Pole prostokąta wynosi: " + (a * b));
+    }
+
+    @Override
+    public String toString() {
+        return "Boki prostokąta wynoszą: " + a + "," + b;
+    }
+}
+package Interfejsy;
+
+public class Triangle implements Figure {
+
+    private double a;
+    private double b;
+    private double c;
+
+    public Triangle(){}
+
+    public Triangle(double aTriangle, double bTriangle, double cTriangle) {
+        a = aTriangle;
+        b = bTriangle;
+        c = cTriangle;
+    }
+
+    @Override
+    public void getPerimeter() {
+        System.out.println("Obwód trójkąta wynosi: " + (a + b + c));
+    }
+
+    @Override
+    public void getArea() {
+        System.out.println("Pole trójkąta wynosi: " + (a * b / 2));
+    }
+
+    @Override
+    public String toString() {
+        return "Boki trójkąta wynoszą: " + a + "," + b + "," + c;
+    }
+}
