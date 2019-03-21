@@ -1,0 +1,124 @@
+package objectAndPackages;
+
+public class Human {
+    private Integer age;
+    private Integer weight;
+    private Integer height;
+    private String name;
+    private Boolean male;
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Boolean getMale() {
+        return male;
+    }
+
+    public void setMale(Boolean male) {
+        this.male = male;
+    }
+}
+
+package objectAndPackages;
+
+public class MyNumber {
+
+    private int number;
+
+    public MyNumber(int number) {
+        this.number = number;
+    }
+
+    public boolean isOdd() {
+        if ( this.number % 2 != 0){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isEven() {
+        if ( this.number % 2 == 0){
+            return true;
+        }
+        return false;
+    }
+
+    public double sqrt() {
+        return Math.sqrt(this.number);
+    }
+
+    public MyNumber pow(MyNumber x) {
+        int number = (int) Math.pow(x.number, 2);
+        MyNumber powMyNumber = new MyNumber(number);
+
+        return powMyNumber;
+    }
+
+    public MyNumber add(MyNumber x){
+        return new MyNumber(this.number + x.number );
+    }
+
+    public MyNumber subtract(MyNumber x){
+        return new MyNumber(this.number - x.number );
+    }
+
+    @Override
+    public String toString() {
+        return " " + number;
+    }
+
+}
+
+package objectAndPackages;
+
+public class Rectangle {
+    private int width;
+    private int height;
+
+    public void countField(){
+        System.out.println("Pole prostokąta wynosi: " + (this.height * this.width));
+    }
+
+    public void countCircuit(){
+        System.out.println("Obwód prostokąta wynosi: " + (2 * this.height + this.width * 2));
+    }
+
+    public void widthDiagonal(){
+        System.out.println("Długość przekątnej wynosi: " + (Math.sqrt(Math.pow(this.height, 2) + Math.pow(this.width,2
+                ))));
+    }
+
+    @Override
+    public String toString() {
+        return "Prostokąt o wymairach: " + this.width + " x " + this.height;
+    }
+}
