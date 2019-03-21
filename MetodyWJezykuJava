@@ -1,0 +1,51 @@
+package metodyWJezykuJava;
+
+public class Methods {
+
+    public boolean isZ8(int a, int b, int c) {
+
+        if ((Math.pow(a, 2)) + (Math.pow(b, 2)) == (Math.pow(c,2))){
+            return true;
+        }
+        return false;
+    }
+
+    public double z7(double i) {
+        return Math.sqrt(i);
+    }
+
+    public double z6(int i) {
+        return Math.pow(i, 3);
+    }
+
+    public boolean isZ5(int i) {
+
+        if (i%3 == 0 && i%5  == 0){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isZ4(int i) {
+
+        if ( i%2 == 0){
+            return true;
+        }
+        return false;
+    }
+
+    public void z3(long a, long b) {
+        
+        System.out.println(a + " + " + b + " = " + (a + b));
+        System.out.println(a + " - " + b + " = " + (a - b));
+        System.out.println(a + " * " + b + " = " + (a * b));
+    }
+
+    public String z2() {
+        return "Łukasz";
+    }
+
+    public int z1() {
+        return 35;
+    }
+}
