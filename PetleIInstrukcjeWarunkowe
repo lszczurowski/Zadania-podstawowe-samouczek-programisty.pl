@@ -1,0 +1,157 @@
+package petleIInstrukcjeWarunkowe;
+
+public class ArrayFactory {
+
+    private int tableLength;
+
+    public ArrayFactory(int tableLength) {
+        this.tableLength = tableLength;
+    }
+
+    public int[] oneDimenision(){
+        return new int[this.tableLength];
+    }
+
+    public int[][] twoDimenision(){
+        return new int[this.tableLength][this.tableLength];
+    }
+
+    public void z8() {
+
+        if (tableLength == 1) {
+            System.out.println("Macierz jednostkowa liczby: " + tableLength + " wygląda: ");
+            System.out.println("[ " + 1 + " ]");
+        } else {
+            int[][] intUnit = twoDimenision();
+            for (int i = 0; i < intUnit.length; i++) {
+                for (int j = 0; j < intUnit[i].length; j++) {
+                    if (i == j) {
+                        intUnit[i][j] = 1;
+                    } else {
+                        intUnit[i][j] = 0;
+                    }
+                }
+
+            }
+            System.out.println("Macierz jednostkowa liczby: " + tableLength + " wygląda: ");
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < intUnit.length; i++) {
+                stringBuilder.append("[");
+                for (int j = 0; j < intUnit[i].length; j++) {
+                    stringBuilder.append(intUnit[i][j]);
+                }
+                stringBuilder.append("]\n");
+            }
+
+            String result = stringBuilder.toString();
+            System.out.println(result);
+        }
+    }
+
+--------------------------------------------------------------------------
+}
+
+package petleIInstrukcjeWarunkowe;
+
+import javafx.beans.property.StringProperty;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Loops {
+
+    public void z1(int x){
+        if (x <= 0){
+            return;
+        }
+        for (int i = 1; i < x; i++){
+            System.out.println(i);
+        }
+    }
+
+    public void z2(int x){
+        if (x <= 0){
+            return;
+        }
+        int c = 1;
+        while (c < x){
+            System.out.println(c++);
+        }
+
+    }
+
+    public void z4(int x){
+        String xString = String.valueOf(x);
+        for (int i = xString.length(); i > 0; i--) {
+            System.out.println(xString.charAt(i - 1));
+        }
+    }
+
+    public void z5(String s){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < s.length(); i++){
+            stringBuilder.append(s.charAt(i));
+        }
+        String upsideDownString = stringBuilder.reverse().toString();
+        System.out.println(upsideDownString);
+    }
+
+    public void z6(long liczba){
+        if (liczba <= 0){
+            return;
+        }
+
+        StringBuilder stringBuilder = new StringBuilder();
+        while (true) {
+
+            if (liczba % 2 != 0) {
+                stringBuilder.append("1");
+            } else {
+                stringBuilder.append("0");
+            }
+            liczba /= 2;
+
+            if (!(liczba > 0)){
+                break;
+            }
+        }
+        System.out.println(stringBuilder.reverse().toString());
+    }
+
+    public boolean isPalindrom(String s){
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0 ; i < s.length(); i++){
+            sb.append(s.charAt(i));
+        }
+
+        return sb.toString().equals(sb.reverse().toString());
+    }
+
+    public void z9(int[] ints){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < ints.length; i++) {
+            stringBuilder.append(ints[i] + ",");
+        }
+        String result = "[" + stringBuilder.deleteCharAt(stringBuilder.length() - 1) + "]";
+        System.out.println(result);
+    }
+
+    public void z10(int[] table){
+        int n = table.length;
+       do {
+           for (int i = 0; i < n - 1; i++) {
+               if (table[i] > table[i + 1]){
+                   int tabBufor = table[i];
+                   table[i] = table[i + 1];
+                   table[i + 1] = tabBufor;
+               }
+           }
+           n--;
+       } while (n > 1);
+
+        for (int i : table) {
+            System.out.print(i + "->");
+        }
+    }
+}
+
