@@ -1,0 +1,19 @@
+package tablice;
+
+public class ZadTab {
+
+    public String[] returnTable(){
+        String[] tableStrings = {"A", "B", "C", "D", "E"};
+        return tableStrings;
+    }
+
+    public String[] reverseTable(String[] strings){
+        String[] newTable = new String[strings.length];
+
+        for (int i = 0; i < newTable.length; i++){
+            int counter = strings.length -1;
+            newTable[i] = strings[counter - i];
+        }
+        return newTable;
+    }
+}
